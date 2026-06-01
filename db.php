@@ -89,6 +89,22 @@ class DB{
         echo $sql;
         return $this->pdo->exec($sql);
   }
+
+  function delete($arg){
+    $sql="DELETE FROM $this->table ";
+    if(is_array($arg)){
+        $tmp=[];
+        foreach($arg as $key => $val ){
+            $tmp[]="`$key`='$val'";
+        }
+        $sql .=" WHERE ".join(" AND ",$tmp);
+    }else{
+        $sql .=" WHERE `id`='$arg'";
+    }
+    echo $sql;
+    return $this->pdo->exec($sql);
+
+}
 }
 
 $Status=new DB('status');
@@ -121,5 +137,9 @@ echo "</pre>"; */
 //insert()方法的使用範例
 //$Status->save(['code'=>'301','status'=>'退學','note'=>'重大違紀事件']);
 //$Status->save(['id'=>'5','status'=>'停學','note'=>'因故中止學業']);
+
+//delete()方法的使用範例
+//$Status->delete(5);
+$Status->delete(['code'=>'301','status'=>'退學']);
 
 ?>
