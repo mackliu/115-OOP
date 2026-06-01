@@ -56,6 +56,39 @@ class DB{
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
 
     }
+
+    function save($arg){
+
+        if(isset($arg['id'])){
+            $this->update($arg);
+        }else{
+            $this->insert($arg);
+        }
+
+    }
+
+    function insert($arg){
+    
+        $keys=array_keys($arg);
+        $sql="INSERT INTO $this->table (`" . join("`,`",$keys) . "`) VALUES ('" . join("','",$arg) . "')";
+        echo $sql;
+        return $this->pdo->exec($sql);
+    }
+    
+
+    function update($arg){
+        $sql="UPDATE $this->table SET ";
+        $tmp=[];
+        foreach($arg as $key => $val){
+            $tmp[]="`$key`='$val'";
+        }
+
+        $sql .= join(",",$tmp);
+        $sql .= " WHERE `id`='{$arg['id']}'";
+        
+        echo $sql;
+        return $this->pdo->exec($sql);
+  }
 }
 
 $Status=new DB('status');
@@ -75,7 +108,7 @@ print_r($Scores->all("WHERE `score`>60","LIMIT 3,5"));
 echo "</pre>"; */
 
 //find()方法的使用範例
-echo "<pre>";
+/* echo "<pre>";
 print_r($Status->find(3));
 echo "</pre>";
 echo "<pre>";
@@ -83,6 +116,10 @@ print_r($Status->find(['status'=>'補結']));
 echo "</pre>";
 echo "<pre>";
 print_r($Scores->find(["school_num"=>'911005']));
-echo "</pre>";
+echo "</pre>"; */
+
+//insert()方法的使用範例
+//$Status->save(['code'=>'301','status'=>'退學','note'=>'重大違紀事件']);
+//$Status->save(['id'=>'5','status'=>'停學','note'=>'因故中止學業']);
 
 ?>
