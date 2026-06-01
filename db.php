@@ -38,11 +38,30 @@ class DB{
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+    function find($arg){
+        $sql = "SELECT * FROM $this->table ";
+            
+            if(is_array($arg)){
+                $tmp=[];
+                foreach($arg as $idx => $val){
+                    $tmp[]="`$idx`='$val'";
+                }
+                $sql .= " WHERE ".join(" AND ",$tmp);
+            }else{
+                $sql .= " WHERE `id`='$arg'";
+                }
+            
+            echo $sql;
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+
+    }
 }
 
 $Status=new DB('status');
 $Scores=new DB('student_scores');
-echo "<pre>";
+//all()方法的使用範例
+/* echo "<pre>";
 print_r($Status->all());
 echo "</pre>";
 echo "<pre>";
@@ -51,10 +70,19 @@ echo "</pre>";
 echo "<pre>";
 print_r($Scores->all(" LIMIT 3,5"));
 echo "</pre>";
-
-
 echo "<pre>";
 print_r($Scores->all("WHERE `score`>60","LIMIT 3,5"));
+echo "</pre>"; */
+
+//find()方法的使用範例
+echo "<pre>";
+print_r($Status->find(3));
+echo "</pre>";
+echo "<pre>";
+print_r($Status->find(['status'=>'補結']));
+echo "</pre>";
+echo "<pre>";
+print_r($Scores->find(["school_num"=>'911005']));
 echo "</pre>";
 
 ?>
