@@ -12,7 +12,7 @@ class DB{
     }
 
     function all(...$args){
-        $sql = "SELECT * FROM $this->table ";
+        $sql = "SELECT * FROM $this->table";
         //$sql = "SELECT * FROM $this->table";  //取得全部資料
         //$sql = "SELECT * FROM $this->table WHERE `code`='A01' AND `name`='John'"; //取得符合條件的資料
         //$sql = "SELECT * FROM $this->table LIMIT 10,10";    //取得第11筆到第20筆資料
@@ -34,10 +34,79 @@ class DB{
                 $sql .=" ".$args[1];
             }
           
-            echo $sql;
+           // echo $sql;
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
+function pagiation($item,$div){
+    $total=$this->count();
+    $pages=ceil($total/$div);
+    $now_page=$_GET['page']??1;
+    $start=($now_page-1)*$div;
+    
+//    $students=$this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        //最左邊的上一頁
+    if($now_page-1 >0){
+        $perv=$now_page-1;
+        echo "<a href='?inc=$item&page=$perv'> < </a>";
+    }else{
+        echo "<a href='javascript:return false;'> < </a>";
+    }
+
+    echo "<div>";
+    if($now_page > 3){
+        echo "<a href='?inc=$item&page=1'> 1 </a>";
+        echo "<span> ... </span>";
+    }
+
+    $start_page=$now_page-2;
+    $end_page=$now_page+2;
+
+    if($start_page <=1){
+        $start_page=1;
+        $end_page=min(5,$pages);
+    }
+
+    if($end_page > $pages){
+        $start_page=max(1,$pages-4);
+        $end_page=$pages;
+    }
+        
+    for($i=$start_page;$i<=$end_page;$i++){
+        
+        $now_class=($now_page==$i)?"now-page":"";
+      
+       echo "<a href='?inc=$item&page=$i' class='$now_class'> $i </a>";
+    }
+
+    if($now_page < $pages-2){
+        echo "<span> ... </span>";
+        echo "<a href='?inc=$item&page=$pages'> $pages </a>";
+    }
+
+    echo "</div>";
+
+    //最右邊的下一頁
+    if($now_page+1 <=$pages){
+        $next=$now_page+1;
+        echo "<a href='?inc=$item&page=$next'> > </a>";
+    }else{
+        echo "<a href='javascript:return false;'> > </a>";
+
+    }
+
+
+    return [
+        'total'=>$total,
+        'pages'=>$pages,
+        'now_page'=>$now_page,
+        'start'=>$start,
+        'div'=>$div
+    ];
+
+}
+
     function count(...$args){
         $sql = "SELECT count(*) FROM $this->table ";
             if(isset($args[0])){
@@ -56,7 +125,7 @@ class DB{
                 $sql .=" ".$args[1];
             }
           
-            echo $sql;
+           // echo $sql;
         return $this->pdo->query($sql)->fetchColumn();
 
     }
@@ -151,6 +220,7 @@ class DB{
 
 }
 
+
     function q($sql){
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -159,6 +229,6 @@ class DB{
 $Student=new DB('students');
 $ClassStudent=new DB('class_student');
 $StudentScore=new DB('student_scores');
-
+$Class=new DB('classes');
 
 ?>

@@ -1,7 +1,14 @@
 <h2 style='text-align:center'>班級列表</h2>
 <?php 
+include_once "./include/db.php";
+?>
+<div class='page-nav'>
+<?php $paginate=$Class->pagiation('classes',3); ?>
+</div>
 
-$classrooms=$pdo->query("select * from `classes`")->fetchAll();
+<?php
+$classrooms=$Class->all(" LIMIT {$paginate['start']},{$paginate['div']} ");
+
 
 echo "<div class='cards-container'>";
 foreach($classrooms as $class):
@@ -16,4 +23,7 @@ foreach($classrooms as $class):
 </a>
 
 <?php endforeach;?>
+</div>
+<div class='page-nav'>
+<?php $Class->pagiation('classes',3); ?>
 </div>
