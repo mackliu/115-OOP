@@ -31,7 +31,7 @@ $nums=$pdo->query($sql)->fetchAll();
 
 
 $students=$pdo->query($sql)->fetchAll();
-
+echo $StudentScore->math("max","score"," WHERE school_num < 911016");
 ?>
 
 <div class='page-nav'>
