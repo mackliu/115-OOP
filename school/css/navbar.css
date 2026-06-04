@@ -1,0 +1,131 @@
+/* ========================================
+   導航欄樣式
+   ======================================== */
+
+.navbar {
+    background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+}
+
+/* 標誌 */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-logo:hover {
+    color: #ffc107;
+}
+
+.nav-logo span {
+    font-size: 28px;
+}
+
+/* 導航連結 */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: #ffc107;
+}
+
+/* 導航按鈕容器 */
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+/* ========================================
+   響應式設計
+   ======================================== */
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+
+    .nav-logo {
+        font-size: 20px;
+    }
+
+    .nav-logo span {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .nav-buttons {
+        gap: 8px;
+    }
+
+    .btn-login, .btn-register {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 10px 15px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-logo {
+        font-size: 18px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .btn-login, .btn-register {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+}

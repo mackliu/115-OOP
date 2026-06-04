@@ -1,0 +1,206 @@
+/* ========================================
+   全局基礎樣式
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2e7d32;
+    --primary-light: #388e3c;
+    --accent-color: #ff9800;
+    --accent-dark: #f57c00;
+    --secondary-color: #ffc107;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-light: #999;
+    --bg-light: #f5f5f5;
+    --bg-lightest: #f9fbe7;
+    --border-color: #e0e0e0;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+html, body {
+    font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+body {
+    background-color: var(--bg-light);
+}
+
+/* ========================================
+   按鈕樣式 - 通用
+   ======================================== */
+
+button, .btn {
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* 登入按鈕 */
+.btn-login {
+    padding: 10px 20px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.btn-login:hover {
+    background-color: #ffb300;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* 註冊按鈕 */
+.btn-register {
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-register:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.3);
+}
+
+/* 綠色主要按鈕 */
+.btn-primary {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* 編輯按鈕 */
+.btn-edit {
+    padding: 8px 16px;
+    background-color: #2196F3;
+    color: white;
+    font-size: 13px;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(33, 150, 243, 0.3);
+}
+
+/* 刪除按鈕 */
+.btn-delete {
+    padding: 8px 16px;
+    background-color: #f44336;
+    color: white;
+    font-size: 13px;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+}
+
+/* 提交按鈕 */
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-submit:hover {
+    background-color: var(--primary-light);
+}
+
+/* 重置按鈕 */
+.btn-reset {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-reset:hover {
+    background-color: #da190b;
+}
+
+/* ========================================
+   連結樣式
+   ======================================== */
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* ========================================
+   標題樣式
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+/* ========================================
+   容器樣式
+   ======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========================================
+   響應式設計
+   ======================================== */
+
+@media (max-width: 768px) {
+    :root {
+        --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 4px 15px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}

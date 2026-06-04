@@ -1,0 +1,265 @@
+/* ========================================
+   表格樣式
+   ======================================== */
+
+.news-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.news-header h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
+.btn-add-news {
+    background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+}
+
+.btn-add-news:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* 表格樣式 */
+.news-table,
+#subjects-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-table thead,
+#subjects-table thead {
+    background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+    color: white;
+}
+
+.news-table th,
+#subjects-table th {
+    padding: 16px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+}
+
+.news-table td,
+#subjects-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #555;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+.news-table tbody tr,
+#subjects-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.news-table tbody tr:hover,
+#subjects-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.news-table tbody tr:last-child td,
+#subjects-table tbody tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* 新聞ID */
+.news-id {
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+/* 標題 */
+.news-subject {
+    color: #1a1a1a;
+    font-weight: 500;
+    max-width: 250px;
+    word-break: break-word;
+}
+
+/* 內容預覽 */
+.news-preview {
+    color: #888;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 日期 */
+.news-date {
+    color: #666;
+    font-size: 13px;
+}
+
+/* 操作按鈕組 */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #1976D2;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(33, 150, 243, 0.3);
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(244, 67, 54, 0.3);
+}
+
+/* 空狀態 */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+}
+
+.empty-state p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* ========================================
+   科目表格特定樣式
+   ======================================== */
+
+#subjects-table {
+    width: 30%;
+}
+
+#subjects-table td:nth-child(1) {
+    text-align-last: justify;
+    width: 200px;
+}
+
+#subjects-table td:nth-child(2) {
+    text-align: center;
+}
+
+/* ========================================
+   響應式設計
+   ======================================== */
+
+@media (max-width: 768px) {
+    .news-container {
+        padding: 0 10px;
+    }
+
+    .news-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-add-news {
+        width: 100%;
+        text-align: center;
+    }
+
+    .news-table,
+    #subjects-table {
+        font-size: 12px;
+    }
+
+    .news-table th,
+    #subjects-table th,
+    .news-table td,
+    #subjects-table td {
+        padding: 10px 8px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    #subjects-table {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-container {
+        padding: 0 5px;
+    }
+
+    .news-header h1 {
+        font-size: 22px;
+    }
+
+    .news-table,
+    #subjects-table {
+        font-size: 11px;
+        overflow-x: auto;
+        display: block;
+    }
+
+    .news-table th,
+    #subjects-table th,
+    .news-table td,
+    #subjects-table td {
+        padding: 8px 5px;
+    }
+
+    .news-preview {
+        max-width: 150px;
+    }
+}

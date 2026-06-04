@@ -1,0 +1,285 @@
+/* ========================================
+   主頁布局樣式
+   ======================================== */
+
+/* 英雄區域 */
+.hero-section {
+    background: linear-gradient(135deg, #c8e6c9 0%, #a5d6a7 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: #2e7d32;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #558b2f;
+}
+
+.hero-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #ff9800;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.hero-button:hover {
+    background-color: #f57c00;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.3);
+}
+
+/* 主要內容區域 */
+.main-content {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* 區域標題 */
+.section-title {
+    font-size: 32px;
+    color: #2e7d32;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: #ff9800;
+    border-radius: 2px;
+}
+
+/* 卡片容器 */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.cards-container a {
+    text-decoration: none;
+}
+
+/* 卡片 */
+.card {
+    background-color: #f1f8f5;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-left: 5px solid #ff9800;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #ff9800;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.8;
+}
+
+/* 新聞/公告區域 */
+.news-section {
+    background-color: #f9fbe7;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 60px;
+}
+
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-title {
+    color: #2e7d32;
+    font-weight: bold;
+    flex: 1;
+}
+
+.news-title a {
+    color: #2e7d32;
+    transition: color 0.3s ease;
+}
+
+.news-title a:hover {
+    color: #ff9800;
+}
+
+.news-date {
+    color: #999;
+    font-size: 13px;
+    margin-left: 20px;
+}
+
+/* 頁腳 */
+.footer {
+    background-color: #2e7d32;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-text {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    margin: 20px 0;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: #ffc107;
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+/* ========================================
+   響應式設計
+   ======================================== */
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 36px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .hero-button {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+
+    .main-content {
+        margin: 40px auto;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .news-section {
+        padding: 20px;
+    }
+
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-date {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .footer {
+        padding: 30px 20px;
+    }
+
+    .footer-links {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .hero-content p {
+        font-size: 14px;
+    }
+
+    .cards-container {
+        gap: 15px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card-icon {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+}

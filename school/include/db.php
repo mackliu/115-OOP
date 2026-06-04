@@ -111,39 +111,9 @@ class DB{
     }
 }
 
-$Status=new DB('status');
-$Scores=new DB('student_scores');
-//all()方法的使用範例
-/* echo "<pre>";
-print_r($Status->all());
-echo "</pre>";
-echo "<pre>";
-print_r($Scores->all(['score'=>64]));
-echo "</pre>";
-echo "<pre>";
-print_r($Scores->all(" LIMIT 3,5"));
-echo "</pre>";
-echo "<pre>";
-print_r($Scores->all("WHERE `score`>60","LIMIT 3,5"));
-echo "</pre>"; */
+$Student=new DB('students');
+$ClassStudent=new DB('class_student');
+$StudentScore=new DB('student_scores');
 
-//find()方法的使用範例
-/* echo "<pre>";
-print_r($Status->find(3));
-echo "</pre>";
-echo "<pre>";
-print_r($Status->find(['status'=>'補結']));
-echo "</pre>";
-echo "<pre>";
-print_r($Scores->find(["school_num"=>'911005']));
-echo "</pre>"; */
-
-//insert()方法的使用範例
-//$Status->save(['code'=>'301','status'=>'退學','note'=>'重大違紀事件']);
-//$Status->save(['id'=>'5','status'=>'停學','note'=>'因故中止學業']);
-
-//delete()方法的使用範例
-//$Status->delete(5);
-//$Status->delete(['code'=>'301','status'=>'退學']);
 
 ?>
