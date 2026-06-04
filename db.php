@@ -13,17 +13,9 @@ class DB{
 
     function all(...$args){
         $sql = "SELECT * FROM $this->table ";
-        //$sql = "SELECT * FROM $this->table";  //取得全部資料
-        //$sql = "SELECT * FROM $this->table WHERE `code`='A01' AND `name`='John'"; //取得符合條件的資料
-        //$sql = "SELECT * FROM $this->table LIMIT 10,10";    //取得第11筆到第20筆資料
-        //$sql = "SELECT * FROM $this->table WHERE `code`='A01' AND `name`='John' LIMIT 10,10";  //取得符合條件的資料中的第11筆到第20筆資料
-
             if(isset($args[0])){
                 if(is_array($args[0])){
-                    $tmp=[];
-                    foreach($args[0] as $idx => $val){
-                        $tmp[]="`$idx`='$val'";
-                    }
+                    $tmp=$this->a2s($args[0]);
                     $sql .= " WHERE ".join(" AND ",$tmp);
                 }else{
                     $sql .=$args[0];
@@ -43,10 +35,7 @@ class DB{
         $sql = "SELECT * FROM $this->table ";
             
             if(is_array($arg)){
-                $tmp=[];
-                foreach($arg as $idx => $val){
-                    $tmp[]="`$idx`='$val'";
-                }
+                $tmp=$this->a2s($arg);
                 $sql .= " WHERE ".join(" AND ",$tmp);
             }else{
                 $sql .= " WHERE `id`='$arg'";
@@ -78,11 +67,7 @@ class DB{
 
     function update($arg){
         $sql="UPDATE $this->table SET ";
-        $tmp=[];
-        foreach($arg as $key => $val){
-            $tmp[]="`$key`='$val'";
-        }
-
+        $tmp=$this->a2s($arg);
         $sql .= join(",",$tmp);
         $sql .= " WHERE `id`='{$arg['id']}'";
         
@@ -93,10 +78,7 @@ class DB{
   function delete($arg){
     $sql="DELETE FROM $this->table ";
     if(is_array($arg)){
-        $tmp=[];
-        foreach($arg as $key => $val ){
-            $tmp[]="`$key`='$val'";
-        }
+        $tmp=$this->a2s($arg);
         $sql .=" WHERE ".join(" AND ",$tmp);
     }else{
         $sql .=" WHERE `id`='$arg'";
@@ -106,13 +88,71 @@ class DB{
 
 }
 
+    function count(...$args){
+        $sql = "SELECT count(*) FROM $this->table ";
+            if(isset($args[0])){
+                if(is_array($args[0])){
+                    $tmp=$this->a2s($args[0]);
+                    $sql .= " WHERE ".join(" AND ",$tmp);
+                }else{
+                    $sql .=$args[0];
+                }
+            }
+
+            if(isset($args[1])){
+                $sql .=" ".$args[1];
+            }
+          
+           // echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
+
+    }
+    function math($math,$column,...$args){
+        $sql = "SELECT $math($column) FROM $this->table ";
+            if(isset($args[0])){
+                if(is_array($args[0])){
+                    $tmp=$this->a2s($args[0]);
+                    $sql .= " WHERE ".join(" AND ",$tmp);
+                }else{
+                    $sql .=$args[0];
+                }
+            }
+
+            if(isset($args[1])){
+                $sql .=" ".$args[1];
+            }
+          
+            echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
+
+    }
+
     function q($sql){
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    private function a2s($array){
+        $tmp=[];
+        foreach($array as $key => $val){
+            $tmp[]="`$key`='$val'";
+        }
+        return $tmp;
+    }
+
 }
 
-$Status=new DB('status');
-$Scores=new DB('student_scores');
+
+function dd($array){
+ echo "<pre>";
+ print_r($array);
+ echo "</pre>";
+}
+
+function to($url){
+    header("location:$url");
+}
+
+
 //all()方法的使用範例
 /* echo "<pre>";
 print_r($Status->all());

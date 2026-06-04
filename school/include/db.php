@@ -226,6 +226,19 @@ function pagiation($item,$div){
     }
 }
 
+function dd($array){
+ echo "<pre>";
+ print_r($array);
+ echo "</pre>";
+}
+
+function to($url){
+    header("location:$url");
+}
+
+
+
+
 $Student=new DB('students');
 $ClassStudent=new DB('class_student');
 $StudentScore=new DB('student_scores');

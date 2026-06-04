@@ -5,6 +5,7 @@ $sql="UPDATE `news` set `subject`='{$_POST['subject']}', `content`='{$_POST['con
       WHERE `id`='{$_POST['id']}'";
 
 $pdo->exec($sql);
-header("location:../admin.php?inc=news");
+//header("location:../admin.php?inc=news");
+to("../admin.php?inc=news");
 
 ?>
