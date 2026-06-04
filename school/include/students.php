@@ -1,9 +1,11 @@
 <a href="?inc=add_student" class='add-btn'>新增學生</a>
 
 <?php 
+include_once "./include/db.php";
 //從class_student 中找到班級學生的學號
 //1.計算總學生人數
-$total_students=$pdo->query("select count(*) from `students`")->fetchColumn();
+//$total_students=$pdo->query("select count(*) from `students`")->fetchColumn();
+$total_students=$Student->count();
 $div=16;
 $pages=ceil($total_students/$div);
 $now_page=$_GET['page']??1;
@@ -25,7 +27,7 @@ $sql="select
              `dept`.`id`=`students`.`dept` AND
              `graduate_school`.`id`=`students`.`graduate_at`
         limit $start,$div";
-//$nums=$pdo->query($sql)->fetchAll();
+$nums=$pdo->query($sql)->fetchAll();
 
 
 $students=$pdo->query($sql)->fetchAll();

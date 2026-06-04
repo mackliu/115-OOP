@@ -3,6 +3,7 @@ $num=$_POST['school_num'];
 
 //$class_code=$pdo->query("SELECT `class_code` FROM `class_student` WHERE `school_num`='{$num}'")->fetchColumn();
 $class_code=$ClassStudent->find($_POST)['class_code'];
+
 /* echo "<pre>";
 print_r($class_code);
 echo "</pre>"; */

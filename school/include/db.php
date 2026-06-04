@@ -38,6 +38,33 @@ class DB{
         return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     }
+    function count(...$args){
+        $sql = "SELECT count(*) FROM $this->table ";
+        //$sql = "SELECT * FROM $this->table";  //取得全部資料
+        //$sql = "SELECT * FROM $this->table WHERE `code`='A01' AND `name`='John'"; //取得符合條件的資料
+        //$sql = "SELECT * FROM $this->table LIMIT 10,10";    //取得第11筆到第20筆資料
+        //$sql = "SELECT * FROM $this->table WHERE `code`='A01' AND `name`='John' LIMIT 10,10";  //取得符合條件的資料中的第11筆到第20筆資料
+
+            if(isset($args[0])){
+                if(is_array($args[0])){
+                    $tmp=[];
+                    foreach($args[0] as $idx => $val){
+                        $tmp[]="`$idx`='$val'";
+                    }
+                    $sql .= " WHERE ".join(" AND ",$tmp);
+                }else{
+                    $sql .=$args[0];
+                }
+            }
+
+            if(isset($args[1])){
+                $sql .=" ".$args[1];
+            }
+          
+            echo $sql;
+        return $this->pdo->query($sql)->fetchColumn();
+
+    }
 
     function find($arg){
         $sql = "SELECT * FROM $this->table ";
